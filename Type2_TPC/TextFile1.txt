@@ -1,0 +1,27 @@
+﻿Error khi su dung truong tu dong tang
+
+public abstract class BillingDetail
+{
+    [DatabaseGenerated(DatabaseGenerationOption.None)]
+    public int BillingDetailId { get; set; }
+    public string Owner { get; set; }
+    public string Number { get; set; }
+}
+
+using (var context = new InheritanceMappingContext())
+{
+    BankAccount bankAccount = new BankAccount() 
+    { 
+        BillingDetailId = 1                     
+    };
+    CreditCard creditCard = new CreditCard() 
+    { 
+        BillingDetailId = 2,
+        CardType = 1
+    };
+                
+    context.BillingDetails.Add(bankAccount);
+    context.BillingDetails.Add(creditCard);
+ 
+    context.SaveChanges();
+}
